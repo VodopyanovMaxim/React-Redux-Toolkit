@@ -1,0 +1,30 @@
+.header {
+  height: 400px;
+  background: url("../../assets/bg.webp");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100vw;
+  z-index: -1;
+}
+
+.card {
+  padding: 250px 20px 20px;
+  display: flex column;
+}
+
+.container {
+  background-color: white;
+  max-width: 600px;
+  margin: 40px auto;
+  padding: 24px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
+}
+
+
+
+
