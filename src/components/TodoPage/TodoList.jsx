@@ -57,7 +57,7 @@ function TodoList({ todo, deleteTaskById, toggleTaskById }) {
           });
 
           return (
-            <li className={taskClassNames}>
+            <li className={taskClassNames} key={task.id}>
               <div className={styles.taskInfo}>
                 <input
                   type="checkbox"
