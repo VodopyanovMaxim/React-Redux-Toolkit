@@ -11,7 +11,7 @@ const TaskSchema = yup.object().shape({
     .trim()
     .min(3, "Завдання повинно містити як мінімум три символи")
     .required("Обов'язкове поле"),
-  deadline: yup.date().required("Обов'язкове поле"),
+  deadline: yup.date(),
 });
 
 function TodoForm({ todo, addNewTask }) {
@@ -20,7 +20,7 @@ function TodoForm({ todo, addNewTask }) {
       id: crypto.randomUUID(),
       body: values.body,
       isDone: false,
-      deadline: values.deadline,
+      deadline: (values.deadline) ? values.deadline : null,
     };
     addNewTask(newTask);
     resetForm();
