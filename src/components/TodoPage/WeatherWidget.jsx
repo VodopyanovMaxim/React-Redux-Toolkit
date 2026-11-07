@@ -1,6 +1,5 @@
 import { connect } from "react-redux";
-import classNames from "classnames";
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import styles from "./WeatherWidget.module.scss";
 import { getWeatherThunk } from "../../store/slices/weatherSlice";
 import {
