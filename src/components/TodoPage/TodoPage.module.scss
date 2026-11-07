@@ -1,4 +1,17 @@
 .header {
+  position: fixed;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 20px;
+  height: 60px;
+  width: 100%;
+  padding: 10px 20px;
+  background-color: rgba(26, 26, 26, 0.9);
+  color: white;
+}
+
+.background {
   height: 400px;
   background: url("../../assets/bg.webp");
   background-size: cover;
@@ -24,7 +37,3 @@
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
 }
-
-
-
-

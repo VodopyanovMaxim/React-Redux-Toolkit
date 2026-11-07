@@ -1,21 +1,28 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import * as API from '../../api'
 
 const initialState = {
-  todo: [
-    {
-      id: crypto.randomUUID(),
-      body: "Вивчити основи Redux Toolkit",
-      isDone: true,
-      deadline: "2026-10-30",
-    },
-    {
-      id: crypto.randomUUID(),
-      body: "Виконати завдання з Redux Toolkit (RTK)",
-      isDone: false,
-      deadline: "2026-11-01",
-    },
-  ],
+  todo: [],
+  isFetching: false,
+  error: null,
 };
+
+export const getTodoThunk = createAsyncThunk(
+  "todo/getTodo",
+  async (payload, thunkAPI) => {
+    try {
+      const { data } = await API.getTodo(5);
+      return data.map((t) => ({
+        id: t.id,
+        body: t.title,
+        isDone: t.completed,
+        deadline: null,
+      }));
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  },
+);
 
 const todoSlice = createSlice({
   initialState,
@@ -31,6 +38,21 @@ const todoSlice = createSlice({
     deleteTask: (state, { payload }) => {
       state.todo = state.todo.filter((t) => t.id !== payload);
     },
+  },
+  extraReducers: (builder) => {
+    builder.addCase(getTodoThunk.pending, (state, action) => {
+      state.isFetching = true;
+      state.error = null;
+    });
+    builder.addCase(getTodoThunk.fulfilled, (state, { payload }) => {
+      state.todo = payload;
+      state.isFetching = false;
+      state.error = null;
+    });
+    builder.addCase(getTodoThunk.rejected, (state, { payload }) => {
+      state.isFetching = false;
+      state.error = payload;
+    });
   },
 });
 

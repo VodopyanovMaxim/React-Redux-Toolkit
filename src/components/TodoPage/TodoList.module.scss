@@ -18,6 +18,53 @@
   margin-bottom: 10px;
 }
 
+.message {
+  @extend %todoListElement;
+  font-size: 15px;
+  width: 100%;
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+}
+
+.reload {
+  align-self: stretch;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 10px 16px;
+  background-color: #3d929f;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  &:hover {
+    background-color: #20334a;
+  }
+}
+
+.temporary {
+  animation: exitAnim 1s linear 3s 1 normal forwards;
+}
+
+@keyframes exitAnim {
+  0% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+}
+
 .list {
   list-style: none;
   padding: 0;
